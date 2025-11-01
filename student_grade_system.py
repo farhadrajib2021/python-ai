@@ -38,6 +38,8 @@ students = {
 
 def calculate_average(grades):
     """Calculate the average of a list of grades"""
+    if not grades:  # Handle empty list
+        return 0
     return sum(grades) / len(grades)
 
 
@@ -72,6 +74,9 @@ print("STUDENT GRADE MANAGEMENT SYSTEM")
 print("=" * 60)
 print()
 
+# Store student results for later use in summary
+student_results = []
+
 # For loop to iterate through all students in the dictionary
 for student_id, student_info in students.items():
     # Extract student information from dictionary
@@ -88,16 +93,17 @@ for student_id, student_info in students.items():
     # Get pass/fail status using conditions
     status = get_status(average)
     
+    # Store results for summary statistics
+    student_results.append({"name": name, "average": average, "status": status})
+    
     # Display student report
     print(f"Student ID: {student_id}")
     print(f"Name: {name}")
     print(f"Subjects and Grades:")
     
     # For loop to iterate through subjects and corresponding grades
-    for i in range(len(subjects)):
-        subject = subjects[i]
-        grade = grades[i]
-        
+    # Using zip() for better Pythonic style
+    for subject, grade in zip(subjects, grades):
         # Condition to highlight low grades
         if grade < 60:
             print(f"  - {subject}: {grade} ⚠️ (Below passing)")
@@ -122,21 +128,19 @@ for student_id, student_info in students.items():
     print("-" * 60)
     print()
 
-# Summary statistics using for loop
+# Summary statistics using stored results
 print("=" * 60)
 print("SUMMARY STATISTICS")
 print("=" * 60)
 
-total_students = len(students)
+total_students = len(student_results)
 passed_students = 0
 failed_students = 0
 
-# For loop to count passed and failed students
-for student_id, student_info in students.items():
-    average = calculate_average(student_info["grades"])
-    
+# For loop to count passed and failed students using stored results
+for result in student_results:
     # Condition to count passed/failed students
-    if average >= 60:
+    if result["status"] == "PASSED":
         passed_students += 1
     else:
         failed_students += 1

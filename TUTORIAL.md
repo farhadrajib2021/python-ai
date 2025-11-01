@@ -46,8 +46,8 @@ students = {
 for student_id, student_info in students.items():
     # Process each student
     
-# Iterate through subjects and grades
-for i in range(len(subjects)):
+# Iterate through subjects and grades using zip()
+for subject, grade in zip(subjects, grades):
     # Process each subject/grade pair
 ```
 
