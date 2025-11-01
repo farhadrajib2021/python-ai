@@ -148,5 +148,8 @@ for result in student_results:
 print(f"Total Students: {total_students}")
 print(f"Passed: {passed_students}")
 print(f"Failed: {failed_students}")
-print(f"Pass Rate: {(passed_students / total_students) * 100:.1f}%")
+if total_students > 0:
+    print(f"Pass Rate: {(passed_students / total_students) * 100:.1f}%")
+else:
+    print("Pass Rate: N/A (no students)")
 print("=" * 60)
