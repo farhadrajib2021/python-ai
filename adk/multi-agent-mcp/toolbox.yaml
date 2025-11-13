@@ -1,0 +1,38 @@
+# GenAI Toolbox Configuration for Local SQLite Database
+sources:
+  local-test-db:
+    kind: sqlite
+    database: test_database.db
+
+tools:
+  list-products:
+    kind: sqlite-sql
+    source: local-test-db
+    description: List all products in the database
+    statement: SELECT * FROM products;
+  
+  get-product-by-id:
+    kind: sqlite-sql
+    source: local-test-db
+    description: Get a specific product by ID
+    parameters:
+      - name: id
+        type: integer
+        description: The product ID
+    statement: SELECT * FROM products WHERE id = ?;
+  
+  search-by-category:
+    kind: sqlite-sql
+    source: local-test-db
+    description: Search products by category
+    parameters:
+      - name: category
+        type: string
+        description: The product category
+    statement: SELECT * FROM products WHERE category = ?;
+
+toolsets:
+  default:
+    - list-products
+    - get-product-by-id
+    - search-by-category

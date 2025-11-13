@@ -38,6 +38,10 @@ wheels/
 .env.local
 .env.*.local
 
+# GenAI Toolbox binary (large file)
+adk/multi-agent-mcp/toolbox
+**/toolbox
+
 # OS
 .DS_Store
 Thumbs.db
