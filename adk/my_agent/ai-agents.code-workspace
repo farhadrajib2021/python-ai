@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../app-agents"
+		},
+		{
+			"path": "../../../../app-mm-chat"
+		}
+	],
+	"settings": {}
+}

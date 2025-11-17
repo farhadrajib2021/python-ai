@@ -10,6 +10,7 @@ def get_current_time(city: str) -> dict:
 
 # Option 1: Use only google_search (recommended for web queries)
 root_agent = Agent(
+    
     model='gemini-2.5-flash',
     name='root_agent',
     description="A helpful assistant that can search the web for information.",

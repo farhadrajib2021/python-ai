@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: Netrivals Store API
+  version: 1.0.0
+
+servers:
+  - url: https://endpoint.netrivals.com
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+
+security:
+  - basicAuth: []
+
+paths:
+  /v1/store/{storeId}/products:
+    get:
+      summary: Get products for a store
+      operationId: getStoreProducts
+      parameters:
+        - in: path
+          name: storeId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the store
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+            default: 100
+          description: Number of products per page
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        price:
+                          type: number
+                        store_id:
+                          type: integer
